@@ -18,38 +18,6 @@ const MapD3 = () => {
   const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
   const ref: RefObject<HTMLDivElement> = React.createRef()
 
-  useEffect(() => {
-    draw()
-  })
-
-  const draw = () => {
-    const thing = bertin.draw({
-      params: {
-         projection: d3.geoMercator(),
-         clip:true
-       },
-      layers: [
-       {type: "simple", geojson: worldData.mapFeatures, tooltip: ["$ISO3", "$NAMEen"] },
-      ]
-     })
-    d3.select(ref.current).append(thing)
-    d3.select('svg').append('g').attr('transform', 'translate(250, 0)').append('rect').attr('width', 500).attr('height', 500).attr('fill', 'tomato')
-  }
-
-  return (
-    <div className="MapD3" ref={ref}>
-      <svg width="500" height="500">
-        <g transform="translate(0, 0)">
-          <rect width="500" height="500" fill="green" />
-        </g>
-      </svg>
-    </div>
-  )
-}
-
-function Mapit() {
-  const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
-  //console.log(`Result: ${JSON.stringify(worldData.mapFeatures)}`)
   const thing = bertin.draw({
     params: {
        projection: d3.geoMercator(),
@@ -59,21 +27,23 @@ function Mapit() {
      {type: "simple", geojson: worldData.mapFeatures, tooltip: ["$ISO3", "$NAMEen"] },
     ]
    })
-   //console.log(typeof thing);
-   console.log(thing)
 
-   const svg = useRef(null);
-   useEffect(()=>{
-    if(svg.current){
-        svg.current.appendChild(thing)
-    } 
-    }, []);
+  useEffect(() => {
+    draw()
+  })
 
-   return (
-      <div ref={svg}/>
-   );
-  
-}  
+  const draw = () => {
+   
+    ref.current?.appendChild(thing)
+    
+  }
+
+  return (
+    <div  ref={ref}/>    
+  )
+}
+
+
 
 
 function App() {
@@ -81,12 +51,7 @@ function App() {
   return (
     <div className="App">
       <p> Hello World</p>
-      <Mapit/>
-  
-      <header className="App-header">
-    
-    
-      </header>
+      <MapD3/>
     </div>
        
   );
