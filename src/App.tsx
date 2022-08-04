@@ -6,12 +6,21 @@ import {  mapObject } from './model'
 
 import { getWorldData } from './recoil/selectors/worldSelectors'
 import * as d3 from 'd3'
+import * as d3geo from 'd3-geo'
 import { deflateRaw } from 'zlib';
 //import *  from 'bertin'
+import styled from 'styled-components'
 
 
 //import * as bertin from 'bertin'
 const bertin = require('bertin');
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+`
 
 const MapD3 = () => {
 
@@ -20,11 +29,17 @@ const MapD3 = () => {
 
   const thing = bertin.draw({
     params: {
-       projection: d3.geoMercator(),
+       projection: d3geo.geoAlbersUsa(),
+       width: 350,
+       height:300,
        clip:true
      },
     layers: [
-     {type: "simple", geojson: worldData.mapFeatures, tooltip: ["$ISO3", "$NAMEen"] },
+     {type: "simple", geojson: worldData.mapFeatures, 
+          tooltip: ["$ISO3", "$NAMEen"],
+          fill: "blue",
+          fillOpacity: .5,
+         }    
     ]
    })
 
@@ -49,10 +64,9 @@ const MapD3 = () => {
 function App() {
   
   return (
-    <div className="App">
-      <p> Hello World</p>
+    <Container>
       <MapD3/>
-    </div>
+    </Container>
        
   );
 }
