@@ -13,6 +13,11 @@ import styled from 'styled-components'
 //import * as bertin from 'bertin'
 const bertin = require('bertin');
 
+const CanvasContainer = styled.div`
+    flex: 1;
+    position: relative;
+`
+
 const D3Map = () => {
 
     const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
@@ -42,7 +47,10 @@ const D3Map = () => {
       ref.current?.appendChild(thing)      
     }  
     return (
-      <div  ref={ref}/>    
+        <CanvasContainer>
+            <div  ref={ref}/>  
+        </CanvasContainer>
+      
     )
   }
   

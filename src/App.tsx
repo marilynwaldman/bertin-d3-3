@@ -1,7 +1,10 @@
 
 import './App.scss';
 import  D3Map  from './components/D3Map/D3Map'
+import  { LeftSidebar}  from './components/LeftSidebar/LeftSidebar'
 import styled from 'styled-components'
+import {GlobalStyles} from './components/ui/ui'
+import { RightSidebar } from './components/RightSidebar/RightSidebar';
 
 
 
@@ -19,7 +22,9 @@ function App() {
   
   return (
     <Container>
+      <LeftSidebar/>
       <D3Map/>
+      <RightSidebar/>
     </Container>
        
   );
