@@ -22,7 +22,7 @@ const Container = styled.div`
     height: 100vh;
 `
 
-const MapD3 = () => {
+const D3Map = () => {
 
   const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
   const ref: RefObject<HTMLDivElement> = React.createRef()
@@ -65,7 +65,7 @@ function App() {
   
   return (
     <Container>
-      <MapD3/>
+      <D3Map/>
     </Container>
        
   );
