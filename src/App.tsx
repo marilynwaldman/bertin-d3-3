@@ -1,5 +1,4 @@
 import React, { RefObject, useEffect, useRef } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { useRecoilValue } from 'recoil'
 import {  mapObject } from './model'
@@ -7,9 +6,11 @@ import {  mapObject } from './model'
 import { getWorldData } from './recoil/selectors/worldSelectors'
 import * as d3 from 'd3'
 import * as d3geo from 'd3-geo'
+import  D3Map  from './components/D3Map/D3Map'
 import { deflateRaw } from 'zlib';
 //import *  from 'bertin'
 import styled from 'styled-components'
+
 
 
 //import * as bertin from 'bertin'
@@ -22,7 +23,7 @@ const Container = styled.div`
     height: 100vh;
 `
 
-const D3Map = () => {
+const D5Map = () => {
 
   const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
   const ref: RefObject<HTMLDivElement> = React.createRef()
