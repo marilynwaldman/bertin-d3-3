@@ -30,8 +30,8 @@ const getWorldDataFromFile = () =>
         console.log("have world map data")
         //const worldFeatures: Array<Feature<Geometry | null>> = ((feature(worldData, worldData.objects.countries) as unknown) as FeatureCollection).features
         const worldFeatures: Array<Feature<Geometry | null>> = worldData
-        console.log("worldFeatures")
-        console.log(`Result: ${JSON.stringify(worldFeatures)}`)
+        //console.log("worldFeatures")
+        //console.log(`Result: ${JSON.stringify(worldFeatures)}`)
         //console.log(worldFeatures)
         resolve(setMapObject(worldFeatures))
       })
