@@ -24,6 +24,7 @@ const D3Map = (props: IWorldMapProps) => {
 
     //const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
     const ref: RefObject<HTMLDivElement> = React.createRef()
+    const fillthing = .5
     const manifest = {
         params: {
            projection: d3geo.geoAlbersUsa(),
@@ -35,7 +36,7 @@ const D3Map = (props: IWorldMapProps) => {
          {type: "simple", geojson: props.worldData.mapFeatures, 
               tooltip: ["$ISO3", "$NAMEen"],
               fill: "blue",
-              fillOpacity: .5,
+              fillOpacity: fillthing,
              }    
         ]
        }
