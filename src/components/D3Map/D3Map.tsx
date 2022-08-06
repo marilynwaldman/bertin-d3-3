@@ -27,7 +27,8 @@ const D3Map = (props: IWorldMapProps) => {
     const ref: RefObject<HTMLDivElement> = React.createRef()
     //const fillthing = .5
     
-
+   console.log("Manifext")
+   console.log(props.manifest)
   
     const bertinmap = bertin.draw(props.manifest)
   
