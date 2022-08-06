@@ -7,10 +7,26 @@ import { useEffect } from 'react';
 import {  mapObject } from '../../model'
 import { useRecoilValue } from 'recoil';
 import { getWorldData } from '../../recoil/selectors/worldSelectors';
+import * as d3geo from 'd3-geo'
 
 const MapWidget = () => {
     const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
-  
+    const manifest = {
+        params: {
+           projection: d3geo.geoAlbersUsa(),
+           width: 350,
+           height:300,
+           clip:true
+         },
+        layers: [
+         {type: "simple", geojson: worldData.mapFeatures, 
+              tooltip: ["$ISO3", "$NAMEen"],
+              fill: "blue",
+              fillOpacity: .5
+             }    
+        ]
+       }
+      
     
   
     useEffect(() => {
@@ -23,7 +39,7 @@ const MapWidget = () => {
         { worldData.mapFeatures? (
           <>
             <LeftSidebar/>
-            <D3Map worldData={ worldData } />
+            <D3Map worldData={ worldData }   manifest={ manifest}/>
             <RightSidebar/> 
           </>
         ) : (
