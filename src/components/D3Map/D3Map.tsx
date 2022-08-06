@@ -23,14 +23,8 @@ const CanvasContainer = styled.div`
 
 const D3Map = (props: IWorldMapProps) => {
 
-    //const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
     const ref: RefObject<HTMLDivElement> = React.createRef()
-    //const fillthing = .5
-    
-   console.log("Manifext")
-   console.log(props.manifest)
-  
-    const bertinmap = bertin.draw(props.manifest)
+    const bertinmap = bertin.draw(props.mapManifest)
   
     useEffect(() => {
       draw()
@@ -51,7 +45,7 @@ const D3Map = (props: IWorldMapProps) => {
 
   interface IWorldMapProps {
     worldData: Types.MapObject
-    manifest:  Object
+    mapManifest:  Object
     
   }
 

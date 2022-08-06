@@ -5,13 +5,13 @@ import {GlobalStyles} from '../../components/ui/ui'
 import { RightSidebar } from '../../components/RightSidebar/RightSidebar';
 import { useEffect } from 'react';
 import {  mapObject } from '../../model'
-import { atomFamily, useRecoilValue, atom } from 'recoil';
+import { atomFamily, useRecoilValue, atom, useRecoilState } from 'recoil';
 import { getWorldData } from '../../recoil/selectors/worldSelectors';
 import * as d3geo from 'd3-geo'
 
 const MapWidget = () => {
     const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
-    const manifest1 = {
+    const manifest = {
         params: {
            projection: d3geo.geoAlbersUsa(),
            width: 350,
@@ -29,23 +29,23 @@ const MapWidget = () => {
 
     const manifestState = atom({
         key: 'manifest',
-        default: () => (manifest1),
+        default: {manifest},
     })  
-    const worldManifest : Object = useRecoilValue(manifestState) as Object 
-      
+    //const worldManifest : Object = useRecoilValue(manifestState) as Object
+    const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) 
     
-  
+    
     useEffect(() => {
       // results
        //console.log(worldData.mapFeatures.length)
-       console.log(`Result: ${JSON.stringify(worldData.mapFeatures)}`)
+       //console.log(`Result: ${JSON.stringify(worldData.mapFeatures)}`)
     })
     return (
       <>
         { worldData.mapFeatures? (
           <>
             <LeftSidebar/>
-            <D3Map worldData={ worldData }   manifest={ manifest1 }/>
+            <D3Map worldData={ worldData }   mapManifest={ worldmanifest.manifest }/>
             <RightSidebar/> 
           </>
         ) : (
@@ -55,3 +55,5 @@ const MapWidget = () => {
     )
   }
   export default MapWidget
+
+
