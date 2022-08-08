@@ -5,15 +5,18 @@ License: MIT License
 File: src/recoil/selectors/mapSelectors.ts
 */
 
+
 import { selector, useRecoilValue } from 'recoil'
 import { Feature, FeatureCollection, Geometry } from 'geojson'
 //import { feature } from 'topojson-client'
-import { setMapObject } from '../../model'
+import { setManifestObject, setMapObject } from '../../model'
 import { feature } from 'topojson-client'
+import * as d3geo from 'd3-geo'
 
-export const getWorldData = selector({
-  key: 'GetWorldData',
-  get: async () => {
+export const getManifest = selector({
+  key: 'GetManifest',
+  get:  async() => {
+    console.log("hello")
     return getWorldDataFromFile()
   },
 })
@@ -33,7 +36,27 @@ const getWorldDataFromFile = () =>
         //console.log("worldFeatures")
         //console.log(`Result: ${JSON.stringify(worldFeatures)}`)
         //console.log(worldFeatures)
-        resolve(setMapObject(worldFeatures))
+        //resolve(setMapObject(worldFeatures))
+      
+        const manifest = {
+          params: {
+             projection: d3geo.geoAlbersUsa(),
+             width: 350,
+             height:300,
+             clip:true
+           },
+          layers: [
+           {type: "simple", geojson: worldFeatures, 
+                tooltip: ["$ISO3", "$NAMEen"],
+                fill: "blue",
+                fillOpacity: .5
+               }    
+          ]
+         }
+         //console.log("in manifest selector - check manifest")
+         //console.log(manifest)
+         resolve(setManifestObject(manifest))
+         
       })
     })
   )

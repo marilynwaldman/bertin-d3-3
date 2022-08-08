@@ -4,7 +4,7 @@ import React, { RefObject, useEffect, useRef } from 'react';
 import {atomFamily, useRecoilState, atom, useSetRecoilState} from 'recoil'
 import './D3Map.scss';
 import { useRecoilValue } from 'recoil'
-import {  mapObject } from '../../model'
+import {  manifestObject, mapObject } from '../../model'
 import { getWorldData } from '../../recoil/selectors/worldSelectors'
 import * as d3 from 'd3'
 import * as d3geo from 'd3-geo'
@@ -24,7 +24,7 @@ const CanvasContainer = styled.div`
 const D3Map = (props: IWorldMapProps) => {
 
     const ref: RefObject<HTMLDivElement> = React.createRef()
-    const bertinmap = bertin.draw(props.mapManifest)
+    const bertinmap = bertin.draw(props.mapManifest.manifest)
   
     useEffect(() => {
       draw()
@@ -44,8 +44,8 @@ const D3Map = (props: IWorldMapProps) => {
   export default D3Map  
 
   interface IWorldMapProps {
-    worldData: Types.MapObject
-    mapManifest:  Object
+   
+    mapManifest:  manifestObject
     
   }
 
