@@ -16,33 +16,22 @@ import { getManifest } from '../../recoil/selectors/manifestSelectors';
 
 
 const MapWidget = () => {
-    const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
-    //console.log("world data back")
-    //console.log(worldData)
+    //const worldData: mapObject = useRecoilValue(getWorldData) as mapObject
     //const manifestData: manifestObject = useRecoilValue(getManifest) as manifestObject
-    const worldmanifest3: manifestObject = useRecoilValue(getManifest) as manifestObject
-    //console.log("check this against manifest")
-    //console.log(worldmanifest3.manifest)
-    const manifest = {
-        params: {
-           projection: d3geo.geoAlbersUsa(),
-           width: 350,
-           height:300,
-           clip:true
-         },
-        layers: [
-         {type: "simple", geojson: worldData.mapFeatures,
-              tooltip: ["$ISO3", "$NAMEen"],
-              fill: "blue",
-              fillOpacity: .5
-             }    
-        ]
-       }
-    console.log("manifest")
-    console.log(manifest)      
+    //console.log("Manifest Data")
+    //console.log(manifestData)
     const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) 
-    console.log("get manifest state")
-    console.log (worldmanifest)   
+    console.log("get manifest state atom")
+    console.log (worldmanifest) 
+    //const x = { ...worldmanifest as any }
+    //console.log("x")
+    //console.log(x)
+    
+    //const y = {...x as any, x.layers[0].fill: 'blue' }
+    //setWorldmanifest( x);
+    //console.log("y")
+    //console.log(y)
+
     //const newmanifest = () => setWorldmanifest(manifest)
     useEffect(() => {
       // results
@@ -51,10 +40,10 @@ const MapWidget = () => {
     })
     return (
       <>
-        { worldmanifest3? (
+        { worldmanifest? (
           <>
             <LeftSidebar/>
-            <D3Map  mapManifest={ worldmanifest3 }/>
+            <D3Map  mapManifest={ worldmanifest }/>
             <RightSidebar/> 
           </>
         ) : (

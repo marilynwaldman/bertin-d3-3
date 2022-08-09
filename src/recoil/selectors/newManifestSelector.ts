@@ -1,21 +1,37 @@
-import { atom } from 'recoil'
+/*
+Author: Eli Elad Elrom
+Website: https://EliElrom.com
+License: MIT License
+File: src/recoil/selectors/mapSelectors.ts
+*/
+
+
+import { selector, useRecoilValue } from 'recoil'
+import { Feature, FeatureCollection, Geometry } from 'geojson'
+//import { feature } from 'topojson-client'
+import { setManifestObject, setMapObject } from '../../model'
+import { manifestState } from '../atoms/manifestAtoms'
+import { feature } from 'topojson-client'
 import * as d3geo from 'd3-geo'
 
-import { manifestObject, mapObject, setManifestObject } from '../../model'
-import { Feature, FeatureCollection, Geometry } from 'geojson'
-import { getNewManifest } from '../selectors/newManifestSelector'
-//import { feature } from 'topojson-client'
-
-import { feature } from 'topojson-client'
-
-
-
-export const manifestState = atom({
-  key: 'manifest1',
-  default:  getNewManifest
- 
-})   
-
+export const getNewManifest = selector({
+  key: 'manifest',
+  get:  async() => {
+    console.log("in manifest selector")
+    return getWorldDataFromFile()
+  },
+  set: ({ set, get }, newManifest) => {
+    // Update state w/ new appended values
+    console.log("in set of manifest selector")
+    const currentState = get(manifestState)
+    console.log("current state :")
+    console.log(currentState)
+    const newState = newManifest;
+    console.log("new state :")
+    console.log(newState)
+    set(manifestState, newState);
+},
+})
 
 const getWorldDataFromFile = () =>
   new Promise((resolve) =>
@@ -49,9 +65,12 @@ const getWorldDataFromFile = () =>
                }    
           ]
          }
-         //console.log("in manifest selector - check manifest")
+         //console.log("in new manifest selector - check manifest")
          //console.log(manifest)
-         return resolve(manifest)
+         //resolve(setManifestObject(manifest))
+         resolve(manifest)
+         return manifest
+         
          
       })
     })

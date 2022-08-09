@@ -16,7 +16,7 @@ import * as d3geo from 'd3-geo'
 export const getManifest = selector({
   key: 'GetManifest',
   get:  async() => {
-    console.log("hello")
+    console.log("in manifest selector")
     return getWorldDataFromFile()
   },
 })
@@ -56,6 +56,7 @@ const getWorldDataFromFile = () =>
          //console.log("in manifest selector - check manifest")
          //console.log(manifest)
          resolve(setManifestObject(manifest))
+         //resolve(manifest)
          
       })
     })

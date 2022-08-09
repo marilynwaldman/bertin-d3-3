@@ -3,17 +3,18 @@ import * as d3geo from 'd3-geo'
 
 import { manifestObject, mapObject, setManifestObject } from '../../model'
 import { Feature, FeatureCollection, Geometry } from 'geojson'
-import { getNewManifest } from '../selectors/newManifestSelector'
 //import { feature } from 'topojson-client'
 
 import { feature } from 'topojson-client'
 
 
 
-export const manifestState = atom({
-  key: 'manifest1',
-  default:  getNewManifest
- 
+export const worldGeoJsonState = atom({
+  key: 'geojson',
+  default:  async() => {
+    console.log("in worldgeo atom")
+    return getWorldDataFromFile()
+  }, 
 })   
 
 
@@ -34,24 +35,8 @@ const getWorldDataFromFile = () =>
         //console.log(worldFeatures)
         //resolve(setMapObject(worldFeatures))
       
-        const manifest = {
-          params: {
-             projection: d3geo.geoAlbersUsa(),
-             width: 350,
-             height:300,
-             clip:true
-           },
-          layers: [
-           {type: "simple", geojson: worldFeatures, 
-                tooltip: ["$ISO3", "$NAMEen"],
-                fill: "blue",
-                fillOpacity: .5
-               }    
-          ]
-         }
-         //console.log("in manifest selector - check manifest")
-         //console.log(manifest)
-         return resolve(manifest)
+        
+         return resolve(worldFeatures)
          
       })
     })
