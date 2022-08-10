@@ -6,12 +6,9 @@ File: src/recoil/selectors/mapSelectors.ts
 */
 
 
-import { selector, useRecoilValue } from 'recoil'
-import { Feature, FeatureCollection, Geometry } from 'geojson'
-//import { feature } from 'topojson-client'
-import { setManifestObject, setMapObject } from '../../model'
+import { selector } from 'recoil'
+import { Feature, Geometry } from 'geojson'
 import { manifestState } from '../atoms/manifestAtoms'
-import { feature } from 'topojson-client'
 import * as d3geo from 'd3-geo'
 
 export const getNewManifest = selector({
@@ -22,9 +19,8 @@ export const getNewManifest = selector({
   },
   set: ({ set, get }, newManifest) => {
     // Update state w/ new appended values
-    console.log("in set of manifest selector")
     const currentState = get(manifestState)
-    console.log("current state :")
+    console.log("current state")
     console.log(currentState)
     const newState = newManifest;
     console.log("new state :")
