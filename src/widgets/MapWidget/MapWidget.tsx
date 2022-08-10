@@ -1,17 +1,9 @@
 import  D3Map  from '../../components/D3Map/D3Map'
 import  { LeftSidebar}  from '../../components/LeftSidebar/LeftSidebar'
-import styled from 'styled-components'
-import {GlobalStyles} from '../../components/ui/ui'
 import { RightSidebar } from '../../components/RightSidebar/RightSidebar';
 import { useEffect } from 'react';
-import {  manifestObject, mapObject } from '../../model'
-import { atomFamily, useRecoilValue, atom, useRecoilState } from 'recoil';
-import { getWorldData } from '../../recoil/selectors/worldSelectors';
-import * as d3geo from 'd3-geo'
+import {  useRecoilState } from 'recoil';
 import { manifestState } from '../../recoil/atoms/manifestAtoms';
-
-//import { manifestState } from '../../recoil/atoms/manifestAtoms'
-import { getManifest } from '../../recoil/selectors/manifestSelectors';
 
 
 
