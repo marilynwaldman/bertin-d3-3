@@ -1,18 +1,9 @@
 //
 
 import React, { RefObject, useEffect, useRef } from 'react';
-import {atomFamily, useRecoilState, atom, useSetRecoilState} from 'recoil'
 import './D3Map.scss';
-import { useRecoilValue } from 'recoil'
-import {  manifestObject, mapObject } from '../../model'
-import { getWorldData } from '../../recoil/selectors/worldSelectors'
-import * as d3 from 'd3'
-import * as d3geo from 'd3-geo'
-import { Types } from './types'
-//import { deflateRaw } from 'zlib';
-//import *  from 'bertin'
 import styled from 'styled-components'
-//import * as bertin from 'bertin'
+
 const bertin = require('bertin');
 
 const CanvasContainer = styled.div`

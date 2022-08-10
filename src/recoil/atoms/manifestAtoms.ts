@@ -3,7 +3,7 @@ import * as d3geo from 'd3-geo'
 
 import { manifestObject, mapObject, setManifestObject } from '../../model'
 import { Feature, FeatureCollection, Geometry } from 'geojson'
-import { getNewManifest } from '../selectors/newManifestSelector'
+import { getNewManifest } from '../selectors/manifestSelector'
 //import { feature } from 'topojson-client'
 
 import { feature } from 'topojson-client'
