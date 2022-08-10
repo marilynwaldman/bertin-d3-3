@@ -14,18 +14,19 @@ import * as d3geo from 'd3-geo'
 export const getNewManifest = selector({
   key: 'manifest',
   get:  async() => {
-    console.log("in manifest selector")
+    console.log("in get manifest selector")
     return getWorldDataFromFile()
   },
   set: ({ set, get }, newManifest) => {
     // Update state w/ new appended values
-    const currentState = get(manifestState)
-    console.log("current state")
-    console.log(currentState)
-    const newState = newManifest;
-    console.log("new state :")
-    console.log(newState)
-    set(manifestState, newState);
+    console.log("in set manifest")
+    console.log(newManifest)
+    
+    set(manifestState, newManifest );
+    console.log("after set manifest")
+    const x = get(manifestState)
+    console.log(" x thing in set manifest")
+    console.log(x)
 },
 })
 
@@ -61,7 +62,7 @@ const getWorldDataFromFile = () =>
                }    
           ]
          }
-         //console.log("in new manifest selector - check manifest")
+         console.log("in new manifest selector - function!!!!")
          //console.log(manifest)
          //resolve(setManifestObject(manifest))
          resolve(manifest)

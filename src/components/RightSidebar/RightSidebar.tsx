@@ -4,6 +4,10 @@ import {Sidebar, Title} from '../ui/ui'
 import styled from 'styled-components'
 //import {ColorPicker} from './ColorPicker'
 import {useRecoilState, selector} from 'recoil'
+import { manifestState } from '../../recoil/atoms/manifestAtoms'
+import { copyFile } from 'fs'
+import { getNewManifest } from '../../recoil/selectors/manifestSelector'
+
 
 
 
@@ -25,26 +29,44 @@ const Input = styled.input`
     font-size: 16px;
 `
 
-const PropertyInput: React.FC<{label: string; value: number; onChange: (value: number) => void}> = ({
-    label,
-    value,
-    onChange,
-}) => {
-    return (
-        <>
-            <InputLabel>{label}</InputLabel>
-            <Input type="number" value={value} onChange={(e) => onChange(Number(e.currentTarget.value))} />
-        </>
-    )
-}
+
+
+
+
+
 
 
 
 export const RightSidebar: React.FC = () => {
 
+    const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) as any
+    const [selectedElement, setSelectedElement] = useRecoilState(getNewManifest) as any
+
+    //console.log(worldmanifest.layers[0].fillOpacity)
+    //cons  
+    //const copy = JSON.parse(JSON.stringify(worldmanifest));
+    
     return (
         <Sidebar>
             <Title>Widgets</Title>
+            <InputLabel>Width</InputLabel>
+            <Input  value={worldmanifest.layers[0].fill}
+               onChange={(e) => {
+                const deepClone = JSON.parse(JSON.stringify(worldmanifest))
+                deepClone.layers[0].fill = String(e.target.value)
+                console.log("deepClone")
+                console.log(deepClone)
+                setWorldmanifest(deepClone)
+                
+               }
+                
+               } />
+            
+            
         </Sidebar>
        )
 }
+function setLivePoly(arg0: (lp: any) => any) {
+    throw new Error('Function not implemented.')
+}
+

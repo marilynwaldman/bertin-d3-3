@@ -3,6 +3,9 @@
 import React, { RefObject, useEffect, useRef } from 'react';
 import './D3Map.scss';
 import styled from 'styled-components'
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { manifestState } from '../../recoil/atoms/manifestAtoms';
+import { getNewManifest } from '../../recoil/selectors/manifestSelector'
 
 const bertin = require('bertin');
 
@@ -13,9 +16,14 @@ const CanvasContainer = styled.div`
 
 
 const D3Map = (props: IWorldMapProps) => {
-
+    const worldM = useRecoilValue(manifestState)
+    //const [selectedElement, setSelectedElement] = useRecoilState(getNewManifest) as any
     const ref: RefObject<HTMLDivElement> = React.createRef()
-    const bertinmap = bertin.draw(props.mapManifest)
+    console.log("in d3Map")
+    console.log(worldM)
+    //const bertinmap = bertin.draw(props.mapManifest)
+    
+    const bertinmap = bertin.draw(useRecoilValue(manifestState))
   
     useEffect(() => {
       draw()
@@ -36,7 +44,7 @@ const D3Map = (props: IWorldMapProps) => {
 
   interface IWorldMapProps {
    
-    mapManifest:  any
+    
     
   }
 

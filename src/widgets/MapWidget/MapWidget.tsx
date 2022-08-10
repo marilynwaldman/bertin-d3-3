@@ -9,7 +9,7 @@ import { manifestState } from '../../recoil/atoms/manifestAtoms';
 
 const MapWidget = () => {
     
-    const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) 
+    //const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) 
     //console.log("get manifest state atom")
     //console.log (worldmanifest) 
 
@@ -21,14 +21,12 @@ const MapWidget = () => {
     })
     return (
       <>
-        { worldmanifest? (
+        { (
           <>
             <LeftSidebar/>
-            <D3Map  mapManifest={ worldmanifest }/>
+            <D3Map />
             <RightSidebar/> 
           </>
-        ) : (
-          <>Loading!</>
         )}
       </>
     )
