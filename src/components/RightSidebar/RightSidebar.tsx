@@ -7,6 +7,7 @@ import {useRecoilState, selector} from 'recoil'
 import { manifestState } from '../../recoil/atoms/manifestAtoms'
 import { copyFile } from 'fs'
 import { getNewManifest } from '../../recoil/selectors/manifestSelector'
+import {ColorPicker} from '../colorPicker'
 
 
 
@@ -29,6 +30,34 @@ const Input = styled.input`
     font-size: 16px;
 `
 
+const Properties: React.FC = () => {
+    //const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState)
+    const [worldmanifest2, setWorldmanifest2] = useRecoilState(manifestState) as any
+    
+
+    return (
+        <div>
+            <Title>Properties</Title>
+            <InputLabel>Color</InputLabel>
+            <ColorPicker
+                value={worldmanifest2.layers[0].fill}
+                onChange={(color) => {
+                    const deepClone2 = JSON.parse(JSON.stringify(worldmanifest2))
+                    deepClone2.layers[0].fill = String(color)
+                
+                    setWorldmanifest2(deepClone2)
+                    }}
+               
+                />
+            
+            
+        </div>
+    )
+}
+
+
+
+
 
 
 
@@ -42,12 +71,11 @@ export const RightSidebar: React.FC = () => {
     const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) as any
     const [selectedElement, setSelectedElement] = useRecoilState(getNewManifest) as any
 
-    //console.log(worldmanifest.layers[0].fillOpacity)
-    //cons  
-    //const copy = JSON.parse(JSON.stringify(worldmanifest));
-    
+
     return (
         <Sidebar>
+            <Properties/>
+            
             <Title>Widgets</Title>
             <InputLabel>Width</InputLabel>
             <Input  value={worldmanifest.layers[0].fill}
