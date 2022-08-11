@@ -54,8 +54,8 @@ export const RightSidebar: React.FC = () => {
                onChange={(e) => {
                 const deepClone = JSON.parse(JSON.stringify(worldmanifest))
                 deepClone.layers[0].fill = String(e.target.value)
-                console.log("deepClone")
-                console.log(deepClone)
+                //console.log("deepClone")
+                //console.log(deepClone)
                 setWorldmanifest(deepClone)
                 
                }
