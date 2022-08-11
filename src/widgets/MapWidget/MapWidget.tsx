@@ -1,9 +1,8 @@
-import  D3Map  from '../../components/D3Map/D3Map'
-import  { LeftSidebar}  from '../../components/LeftSidebar/LeftSidebar'
+import { Canvas }  from '../../components/Canvas/Canvas'
+import { LeftSidebar}  from '../../components/LeftSidebar/LeftSidebar'
 import { RightSidebar } from '../../components/RightSidebar/RightSidebar';
 import { useEffect } from 'react';
-import {  useRecoilState } from 'recoil';
-import { manifestState } from '../../recoil/atoms/manifestAtoms';
+
 
 
 
@@ -24,7 +23,7 @@ const MapWidget = () => {
         { (
           <>
             <LeftSidebar/>
-            <D3Map />
+            <Canvas />
             <RightSidebar/> 
           </>
         )}
