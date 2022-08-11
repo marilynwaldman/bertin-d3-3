@@ -27,8 +27,17 @@ const Input = styled.input`
     outline: none;
     margin-bottom: 15px;
     color: #fff;
-    font-size: 16px;
+    font-size: 16px;  
 `
+//InputLabel>Width</InputLabel>
+//<Input  value={worldmanifest.layers[0].fill}
+//onChange={(e) => {
+// const deepClone = JSON.parse(JSON.stringify(worldmanifest))
+// deepClone.layers[0].fill = String(e.target.value)
+ //console.log("deepClone")
+ //console.log(deepClone)
+// setWorldmanifest(deepClone)
+
 
 const Properties: React.FC = () => {
     //const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState)
@@ -56,16 +65,6 @@ const Properties: React.FC = () => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 export const RightSidebar: React.FC = () => {
 
     const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) as any
@@ -74,23 +73,7 @@ export const RightSidebar: React.FC = () => {
 
     return (
         <Sidebar>
-            <Properties/>
-            
-            <Title>Widgets</Title>
-            <InputLabel>Width</InputLabel>
-            <Input  value={worldmanifest.layers[0].fill}
-               onChange={(e) => {
-                const deepClone = JSON.parse(JSON.stringify(worldmanifest))
-                deepClone.layers[0].fill = String(e.target.value)
-                //console.log("deepClone")
-                //console.log(deepClone)
-                setWorldmanifest(deepClone)
-                
-               }
-                
-               } />
-            
-            
+            <Properties/>   
         </Sidebar>
        )
 }
