@@ -7,7 +7,7 @@ import {useRecoilState, selector} from 'recoil'
 import { manifestState } from '../../recoil/atoms/manifestAtoms'
 import { copyFile } from 'fs'
 import { getNewManifest } from '../../recoil/selectors/manifestSelector'
-import {ColorPicker} from '../colorPicker'
+import {ColorPicker} from '../ColorPicker/colorPicker'
 
 
 
