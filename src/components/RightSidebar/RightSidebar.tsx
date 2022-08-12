@@ -8,6 +8,7 @@ import { manifestState } from '../../recoil/atoms/manifestAtoms'
 import { copyFile } from 'fs'
 import { getNewManifest } from '../../recoil/selectors/manifestSelector'
 import {ColorPicker} from '../ColorPicker/colorPicker'
+import * as d3geo from 'd3-geo'
 
 
 
@@ -41,20 +42,22 @@ const Input = styled.input`
 
 const Properties: React.FC = () => {
     //const [selectedElement, setSelectedElement] = useRecoilState(selectedElementState)
-    const [worldmanifest2, setWorldmanifest2] = useRecoilState(manifestState) as any
-    
+    const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) as any
+    console.log("in rightside")
+    console.log(worldmanifest)
 
     return (
         <div>
             <Title>Properties</Title>
             <InputLabel>Color</InputLabel>
             <ColorPicker
-                value={worldmanifest2.layers[0].fill}
+                value={worldmanifest.layers[0].fill}
                 onChange={(color) => {
-                    const deepClone2 = JSON.parse(JSON.stringify(worldmanifest2))
-                    deepClone2.layers[0].fill = String(color)
-                
-                    setWorldmanifest2(deepClone2)
+                    const params = worldmanifest.params
+                    const deepClone = JSON.parse(JSON.stringify(worldmanifest))
+                    deepClone.layers[0].fill = String(color)
+                    deepClone.params = params
+                    setWorldmanifest(deepClone)
                     }}
                
                 />
@@ -66,9 +69,6 @@ const Properties: React.FC = () => {
 
 
 export const RightSidebar: React.FC = () => {
-
-    const [worldmanifest, setWorldmanifest] = useRecoilState(manifestState) as any
-    const [selectedElement, setSelectedElement] = useRecoilState(getNewManifest) as any
 
 
     return (

@@ -17,12 +17,15 @@ const CanvasContainer = styled.div`
 `
 
 
-export const D3Map = forwardRef((worldM, nodeRef) => {
-  //const worldM = useRecoilValue(manifestState)
+export const D3Map = () => {
+  const worldManifest = useRecoilValue(manifestState)
+  console.log("in bertinmap")
+  console.log("Manifest")
+  console.log(worldManifest)
   
   
   const ref: RefObject<HTMLDivElement> = React.createRef()
-  const bertinmap = bertin.draw(useRecoilValue(manifestState))
+  const bertinmap = bertin.draw(worldManifest)
   
   console.log("in bertinmap")
   //console.log(bertinmap)
@@ -47,7 +50,7 @@ export const D3Map = forwardRef((worldM, nodeRef) => {
       <div ref={ref} />  
     </CanvasContainer>
   )
-})
+}
 //<div ref={ref} />
 
 
